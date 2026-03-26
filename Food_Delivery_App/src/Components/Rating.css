@@ -1,0 +1,41 @@
+.rating-wrapper {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stars-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.star-icon {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.star-icon:hover {
+  transform: scale(1.2);
+}
+
+.avg-rating-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+.avg-rating-text b {
+  color: #333;
+  font-weight: 700;
+}
+
+.rating-loading {
+  font-size: 0.8rem;
+  color: #aaa;
+  font-style: italic;
+}

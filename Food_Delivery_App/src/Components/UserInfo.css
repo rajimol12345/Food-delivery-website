@@ -1,0 +1,212 @@
+/* Admin User Management Styling */
+
+.admin-page-title {
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fc8019;
+  letter-spacing: -1px;
+}
+
+/* Table Card Styling */
+.table-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f0f0;
+  margin-bottom: 40px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table thead {
+  background: #db6a6a;
+  color: white;
+}
+
+.user-table th {
+  padding: 22px 25px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.user-table td {
+  padding: 20px 25px;
+  border-bottom: 1px solid #f8f8f8;
+  color: #444;
+  font-weight: 500;
+}
+
+.user-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+
+/* Badges */
+.role-badge {
+  background: #f0f4ff;
+  color: #405189;
+  padding: 5px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-badge.active {
+  background: #e6fffa;
+  color: #00a389;
+  padding: 5px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Action Buttons */
+.action-btns {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btns button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: white;
+}
+
+.btn-view { background: #28a745; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); }
+.btn-view:hover { background: #218838; transform: translateY(-3px); }
+
+.btn-edit { background: #f4f5f7; color: #4b5563 !important; border: 1px solid #e5e7eb !important; }
+.btn-edit:hover { background: #e5e7eb; }
+
+.btn-delete { background: #dc3545; box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2); }
+.btn-delete:hover { background: #c82333; transform: translateY(-3px); }
+
+/* User Details Card - Ultra Premium Glassmorphism */
+.user-details-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.details-header h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.details-header h3::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, #fc8019, transparent);
+  border-radius: 10px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px;
+  background: #fcfcfc;
+  border-radius: 18px;
+  border: 1px solid #f3f3f3;
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+  transform: translateY(-2px);
+}
+
+.detail-icon {
+  font-size: 1.4rem;
+  color: #fc8019;
+  background: #fff5ed;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.detail-item strong {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.detail-item p {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.close-details-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #fc8019, #ff9e43);
+  border: none;
+  border-radius: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(252, 128, 25, 0.3);
+}
+
+.close-details-btn:hover {
+  transform: scale(1.01) translateY(-2px);
+  box-shadow: 0 15px 40px rgba(252, 128, 25, 0.4);
+}
+
+.animate-in {
+  animation: cardFadeUp 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}

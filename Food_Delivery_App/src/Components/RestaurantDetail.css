@@ -1,0 +1,204 @@
+/* RestaurantDetail.css */
+
+.restaurant-detail-page {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a1a1a;
+  background-color: #fcfcfc;
+}
+
+/* Hero Section */
+.restaurant-hero {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 60px 5%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.badge-item.rating {
+  background: #48c479;
+  border: none;
+}
+
+/* Back Button */
+.back-btn-wrapper {
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  z-index: 10;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #1a1a1a;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  transform: translateX(-5px);
+  background: #fc8019;
+  color: white;
+}
+
+/* Info Section */
+.restaurant-info-section {
+  padding: 40px 5%;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.info-card h4 {
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+  border-bottom: 2px solid #fc8019;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Sidebar Offers */
+.offers-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.promo-card {
+  background: linear-gradient(135deg, #fff9f4 0%, #fff 100%);
+  border: 1px dashed #fc8019;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.promo-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fc8019;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.promo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promo-item {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(252, 128, 25, 0.1);
+}
+
+.promo-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .restaurant-hero {
+    height: 350px;
+  }
+  .hero-content h1 {
+    font-size: 32px;
+  }
+}

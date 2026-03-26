@@ -1,0 +1,164 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { FaHeart, FaRegHeart, FaShoppingCart } from 'react-icons/fa';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './SavedItems.css';
+
+const SavedItems = () => {
+  const [savedItems, setSavedItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [wishlistIsProcessing, setWishlistIsProcessing] = useState(false);
+
+  // Function to read token from cookies
+  const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  };
+
+  const userId = getCookie('token');
+
+  // Fetch saved items on mount or userId change
+  useEffect(() => {
+    const fetchSavedItems = async () => {
+      if (!userId) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await axios.get(`/api/saved/${userId}`);
+        setSavedItems(res.data);
+      } catch (err) {
+        console.error('Error fetching saved items:', err);
+        toast.error('Failed to fetch saved items');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSavedItems();
+  }, [userId]);
+
+  // Save/Unsave toggle handler
+  const handleToggleSave = async (productId) => {
+    if (wishlistIsProcessing) return;
+    setWishlistIsProcessing(true);
+
+    const isSaved = savedItems.some((item) => item.productId._id === productId);
+
+    try {
+      if (isSaved) {
+        // Remove from saved
+        await axios.delete(`/api/saved/${userId}/${productId}`);
+        setSavedItems((prev) => prev.filter((item) => item.productId._id !== productId));
+        toast.info('Removed from wishlist');
+      } else {
+        // Add to saved
+        await axios.post(`/api/saved/add`, {
+          userId,
+          productId,
+        });
+        const productData = await axios.get(`/api/menu/item/${productId}`);
+        setSavedItems((prev) => [...prev, { productId: productData.data }]);
+        toast.success('Added to wishlist');
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 409) {
+        toast.info('Item is already in wishlist');
+      } else {
+        console.error('Error toggling saved item:', err);
+        toast.error('Failed to update wishlist');
+      }
+    } finally {
+      setWishlistIsProcessing(false);
+    }
+  };
+
+  // Add item to cart handler
+  const handleAddToCart = async (menuId) => {
+    try {
+      await axios.post(`/api/cart/addcart`, {
+        userId,
+        menuId,
+        quantity: 1,
+      });
+      toast.success('Item added to cart!');
+    } catch (err) {
+      console.error('Error adding to cart:', err);
+      toast.error('Failed to add item to cart');
+    }
+  };
+
+  if (!userId) {
+    return <div className="saved-message error">Please log in to view saved items.</div>;
+  }
+
+  if (loading) {
+    return <div className="saved-message">Loading saved items...</div>;
+  }
+
+  return (
+    <div className="saved-container">
+      <h2 className="saved-title">Wishlist</h2>
+
+      <div className="saved-grid">
+        {savedItems.length === 0 && <p>No saved items available.</p>}
+        {savedItems.map(({ productId }) => {
+          const isSaved = savedItems.some((item) => item.productId._id === productId._id);
+
+          return (
+            <div key={productId._id} className="saved-card" style={{ position: 'relative' }}>
+              {/* Image & Wishlist Overlay */}
+              <div className="position-relative overflow-hidden" style={{ borderRadius: '16px', marginBottom: '16px' }}>
+                <button
+                  className={`wishlist-icon-standard ${isSaved ? 'saved' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleToggleSave(productId._id);
+                  }}
+                  title={isSaved ? 'Remove from wishlist' : 'Add to wishlist'}
+                >
+                  {isSaved ? <FaHeart /> : <FaRegHeart />}
+                </button>
+                <img
+                  src={productId.image}
+                  alt={productId.name}
+                  className="saved-image"
+                  style={{ marginBottom: '0' }}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = '/fallback.jpg';
+                  }}
+                />
+              </div>
+
+              {/* Product Info */}
+              <div className="saved-content">
+                <h3 className="saved-name">{productId.name}</h3>
+                <p className="saved-desc">{productId.description}</p>
+                <p className="saved-price">₹{productId.price}</p>
+
+                {/* Add to Cart Button */}
+                <button
+                  className="saved-cart-btn"
+                  onClick={() => handleAddToCart(productId._id)}
+                >
+                  <FaShoppingCart className="cart-icon" /> Add
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Toast Container */}
+      <ToastContainer position="top-center" autoClose={2000} hideProgressBar />
+    </div>
+  );
+};
+
+export default SavedItems;

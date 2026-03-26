@@ -1,0 +1,162 @@
+/* --- Compact Bottom Offer Popup --- */
+
+/* Container (replaces full-screen overlay) */
+.offer-popup-overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: auto;
+  height: auto;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 10000;
+  pointer-events: none; /* Allow clicks to pass through to the page */
+}
+
+/* Content Container */
+.offer-popup-content {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  width: 450px; /* Decreased size */
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  pointer-events: auto; /* Re-enable clicks for the popup itself */
+  animation: slideUpPopup 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+@keyframes slideUpPopup {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Close Button */
+.offer-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.offer-popup-close:hover {
+  background: #ff4d4d;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Image Section */
+.offer-popup-image-container {
+  width: 40%;
+  background: #fff5ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.offer-popup-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(252, 128, 25, 0.2));
+  transition: transform 0.5s ease;
+}
+
+.offer-popup-content:hover .offer-popup-image {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Text Section */
+.offer-popup-text-container {
+  width: 60%;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.offer-popup-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 5px;
+  letter-spacing: -0.5px;
+}
+
+.offer-popup-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0 0 15px;
+}
+
+.offer-popup-highlight {
+  color: #fc8019;
+  font-weight: 700;
+}
+
+/* Call to Action Button */
+.offer-popup-cta {
+  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+  color: #ffffff !important;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(252, 128, 25, 0.2);
+  display: inline-block;
+  width: fit-content;
+}
+
+.offer-popup-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(252, 128, 25, 0.3);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .offer-popup-overlay {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px;
+  }
+  .offer-popup-content {
+    width: 100%;
+    max-width: none;
+    border-radius: 15px;
+  }
+  .offer-popup-title {
+    font-size: 1.4rem;
+  }
+}

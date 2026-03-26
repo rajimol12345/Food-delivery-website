@@ -1,0 +1,309 @@
+/* Premium Restaurant List & Cards */
+.restaurant-section {
+  padding: 100px 0;
+  background-color: #fafbfc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header styles for consistency with professional theme */
+.section-header-professional {
+  margin-bottom: 60px;
+  text-align: left;
+}
+
+.header-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fc8019;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.accent-dot {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(252, 128, 25, 0.4);
+}
+
+.header-title-professional {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  letter-spacing: -1.5px;
+}
+
+.header-subtitle-professional {
+  color: #6c757d;
+  font-size: 18px;
+  max-width: 650px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.section-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.section-header-professional {
+  margin-bottom: 0;
+}
+
+.slider-controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e2e2e7;
+  background: #f1f1f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: #3d4152;
+  font-size: 16px;
+}
+
+.control-btn:hover {
+  background: #e2e2e7;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.slider-relative-wrapper {
+  position: relative;
+}
+
+/* Slider vs Grid Container */
+.restaurant-slider-container {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px 0 40px;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.restaurant-slider-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.restaurant-slider-container.slider-view {
+  flex-wrap: nowrap;
+}
+
+.restaurant-slider-container.grid-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  flex-wrap: wrap;
+}
+
+.restaurant-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  position: relative;
+  min-width: 330px; /* Fixed width for slider items */
+  max-width: 350px;
+  height: 100%;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(252, 128, 25, 0.2);
+}
+
+.card-image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.restaurant-card:hover .card-image {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.restaurant-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.rating-badge {
+  background: #48c479;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.delivery-time {
+  font-size: 12px;
+  font-weight: 700;
+  color: #686b78;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Modern clean typography for details */
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.detail-label {
+  font-weight: 800;
+  color: #adb5bd;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+.detail-value {
+  color: #495057;
+  font-weight: 600;
+  flex: 1;
+}
+
+/* Premium Rating Badge */
+.rating-badge {
+  background: #f8f9fa;
+  padding: 10px 18px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 12px 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.restaurant-card:hover .rating-badge {
+  background: rgba(252, 128, 25, 0.1);
+  border-color: rgba(252, 128, 25, 0.2);
+  transform: scale(1.05);
+}
+
+.rating-label {
+  font-weight: 800;
+  color: #333;
+  font-size: 13px;
+}
+
+.rating-value {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+
+.star-icon {
+  color: #fc8019;
+  font-size: 16px;
+  margin-left: 4px;
+}
+
+.hours-row {
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px dashed rgba(0,0,0,0.06);
+}
+
+/* Empty State */
+.no-results {
+  text-align: center;
+  padding: 80px 0;
+  color: #666;
+}
+
+.btn-reset {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(252, 128, 25, 0.3);
+}
+
+.btn-reset:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(252, 128, 25, 0.4);
+}
+
+@media (max-width: 768px) {
+  .header-title-professional {
+    font-size: 30px;
+  }
+  .restaurant-grid {
+    gap: 25px;
+  }
+}

@@ -1,0 +1,88 @@
+.upi-payment-container {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid rgba(252, 128, 25, 0.1);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.upi-payment-container h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 25px;
+}
+
+.qr-wrapper {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 20px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 2px solid #f8f9fa;
+}
+
+.confirm-payment-btn {
+  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+  color: white;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  padding: 12px 30px;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(252, 128, 25, 0.2);
+}
+
+.confirm-payment-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(252, 128, 25, 0.3);
+}
+
+.confirm-payment-btn.verifying {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.upi-qr h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.demo-bypass {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px dashed #ddd;
+}
+
+.demo-bypass p {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.bypass-btn {
+  background: white;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 6px 15px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bypass-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+}
+
+

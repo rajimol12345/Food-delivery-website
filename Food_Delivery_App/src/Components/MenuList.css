@@ -1,0 +1,132 @@
+/* MenuList.css */
+
+.menu-listing-section {
+  background-color: #fcfcfc;
+  padding: 60px 5%;
+}
+
+.menu-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.menu-title-main {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.menu-underline {
+  width: 60px;
+  height: 4px;
+  background-color: #fc8019;
+  border-radius: 2px;
+}
+
+/* Card Styling - Professional Premium */
+.menu-card {
+  border: 1px solid rgba(0, 0, 0, 0.02) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  background: #ffffff;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(252, 128, 25, 0.1) !important;
+}
+
+/* Image */
+.menu-img-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.menu-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.menu-card:hover .menu-img {
+  transform: scale(1.1);
+}
+
+/* Card Body */
+.card-body-custom {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.item-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.item-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 42px;
+}
+
+.item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.item-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2d3436;
+}
+
+.add-btn-professional {
+  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(252, 128, 25, 0.25);
+  letter-spacing: 0.5px;
+}
+
+.add-btn-professional:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(252, 128, 25, 0.35);
+}
+
+.add-btn-professional:active {
+  transform: scale(0.95);
+}
+
+/* Toast Styling */
+.custom-toast {
+  background-color: #333 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
