@@ -31,7 +31,6 @@ import Logout from './components/Logout.jsx';
 import SupportChat from './components/SupportChat.jsx';
 
 // Set global API base URL
-axios.defaults.baseURL = 'http://localhost:5000';
 
 function App() {
   return (

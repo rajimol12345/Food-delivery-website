@@ -29,7 +29,7 @@ const app = express();
 // Render usually uses port 10000, process.env.PORT handles this automatically
 const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = "https://food-delivery-app-yfr9.onrender.com";
-const DASHBOARD_URL = "https://food-delivery-dashboard-yfr9.onrender.com"; // Assuming similar pattern if not provided
+const DASHBOARD_URL = "https://food-delivery-dashboard-yfr9.onrender.com"; // Keep as alternative if dashboard is elsewhere
 
 // -----------------------------------------------------------------------------
 // HTTP SERVER + SOCKET.IO SETUP
