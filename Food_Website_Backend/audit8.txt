@@ -1,0 +1,18 @@
+﻿# npm audit report
+
+brace-expansion  <5.0.5
+Severity: moderate
+brace-expansion: Zero-step sequence causes process hang and memory exhaustion - https://github.com/advisories/GHSA-f886-m6hf-6m8v
+fix available via `npm audit fix`
+node_modules/brace-expansion
+  minimatch  2.0.0 - 10.0.2
+  Depends on vulnerable versions of brace-expansion
+  node_modules/minimatch
+    nodemon  0.0.0-development || 1.4.10-alpha.1 - 1.4.10-alpha.3 || 1.7.2 - 3.1.11
+    Depends on vulnerable versions of minimatch
+    node_modules/nodemon
+
+3 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix

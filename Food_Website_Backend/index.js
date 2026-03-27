@@ -26,7 +26,9 @@ const foodRoutes = require("./router/food");
 const messageRouter = require("./router/message");
 
 const app = express();
+// Render usually uses port 10000, process.env.PORT handles this automatically
 const PORT = process.env.PORT || 5000;
+const FRONTEND_URL = "https://food-delivery-app-yfr9.onrender.com";
 
 // -----------------------------------------------------------------------------
 // HTTP SERVER + SOCKET.IO SETUP
@@ -34,7 +36,8 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    // Added your Render frontend link here
+    origin: [FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   },
 });
@@ -44,25 +47,19 @@ app.set("io", io);
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
 
-  // Join a private support room (for users)
   socket.on("join_chat", (userId) => {
     socket.join(userId);
     console.log(`User ${userId} joined their support chat room`);
   });
 
-  // Join the global admin room
   socket.on("join_admin", () => {
     socket.join("admin_room");
     console.log("Admin joined the global support room");
   });
 
-  // Handle messages from user or admin
   socket.on("send_message", async (data) => {
-    // data: { senderId, receiverId, message, role }
     const { receiverId, message, role, senderId } = data;
-    
     try {
-      // Create and save new message to DB
       const newMessage = new Message({
         senderId,
         receiverId,
@@ -72,7 +69,6 @@ io.on("connection", (socket) => {
       });
       await newMessage.save();
 
-      // 1. Send to the designated recipient's room
       io.to(receiverId).emit("receive_message", {
         senderId,
         message,
@@ -80,8 +76,6 @@ io.on("connection", (socket) => {
         timestamp: newMessage.timestamp
       });
 
-      // 2. If it's from a user, also broadcast it to the global admin room 
-      // for discovery (so admins see new users appearing in the list)
       if (role === 'user') {
         io.to("admin_room").emit("new_admin_message", {
           senderId,
@@ -103,16 +97,10 @@ io.on("connection", (socket) => {
 // -----------------------------------------------------------------------------
 // MIDDLEWARE
 // -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// MIDDLEWARE
-// -----------------------------------------------------------------------------
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow any origin that is not undefined (useful for mobile apps or local testing)
-      if (!origin) return callback(null, true);
-      callback(null, true); // Reflect any origin to browser
-    },
+    // Updated to allow your specific Render frontend
+    origin: [FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   })
 );
@@ -146,13 +134,10 @@ app.get("/health", (req, res) => {
 // MONGO DB CONNECTION
 // -----------------------------------------------------------------------------
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/food_ordering", {
-    serverSelectionTimeoutMS: 5000, // 5 seconds timeout
-  })
+  .connect(process.env.MONGO_URI || "mongodb://localhost:27017/food_ordering")
   .then(() => console.log("✅ MongoDB connected successfully"))
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err.message);
-    console.error("Full error details:", err);
   });
 
 // -----------------------------------------------------------------------------
@@ -168,76 +153,46 @@ app.use("/api/search", SearchRouter);
 app.use("/api/admin", AdminRouter);
 app.use("/api/admin/notifications", adminNotificationRouter);
 app.use("/api/settings", settingsRouter);
-app.use("/api/rate", ratingRouter); // ⭐ Correct rating API path: /api/rate
+app.use("/api/rate", ratingRouter); 
 app.use("/api/admin", adminRoutes);
 app.use("/api/payment", paymentRouter);
 app.use("/api/foods", foodRoutes);
 app.use("/api/messages", messageRouter);
 
 // -----------------------------------------------------------------------------
-// PAYPAL PUBLIC CLIENT ID ENDPOINT
+// PAYPAL CONFIG
 // -----------------------------------------------------------------------------
 app.get("/api/payment/config", (req, res) => {
-  const cid = process.env.PAYPAL_CLIENT_ID || "";
-  if (!cid) console.warn("⚠ PAYPAL_CLIENT_ID missing in .env");
-  res.json({ clientId: cid });
+  res.json({ clientId: process.env.PAYPAL_CLIENT_ID || "" });
 });
 
 // -----------------------------------------------------------------------------
-// 404 HANDLER
+// 404 & ERROR HANDLERS
 // -----------------------------------------------------------------------------
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-// -----------------------------------------------------------------------------
-// GLOBAL ERROR HANDLER
-// -----------------------------------------------------------------------------
 app.use((err, req, res, next) => {
   console.error("❌ GLOBAL ERROR:", err);
-  res.status(500).json({ 
-    error: 'Internal Server Error', 
-    details: err.message,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
-  });
+  res.status(500).json({ error: 'Internal Server Error', details: err.message });
 });
 
 // -----------------------------------------------------------------------------
-// START SERVER WITH AUTO PORT FALLBACK
+// START SERVER
 // -----------------------------------------------------------------------------
 const startServer = (port) => {
-  const currentPort = Number(port);
-
-  server.once("error", (err) => {
+  server.listen(port, () => {
+    console.log(`🚀 Server running on port ${port}`);
+    console.log(`📡 Allowing CORS from: ${FRONTEND_URL}`);
+  }).on('error', (err) => {
     if (err.code === "EADDRINUSE") {
-      console.warn(`⚠ Port ${currentPort} already in use. Trying ${currentPort + 1}...`);
-      server.close(() => {
-        startServer(currentPort + 1);
-      });
+      console.warn(`⚠ Port ${port} in use, trying ${port + 1}`);
+      startServer(Number(port) + 1);
     } else {
-      console.error("❌ Server Error:", err);
-      process.exit(1);
+      console.error(err);
     }
   });
-
-  server.once("listening", () => {
-    const addr = server.address();
-    const actualPort = typeof addr === "string" ? addr : addr.port;
-    
-    const maskedCID =
-      (process.env.PAYPAL_CLIENT_ID || "").slice(0, 6) +
-      "..." +
-      (process.env.PAYPAL_CLIENT_ID || "").slice(-4);
-
-    console.log(`🚀 Server running on http://localhost:${actualPort}`);
-    console.log(
-      `PayPal Client ID: ${
-        process.env.PAYPAL_CLIENT_ID ? maskedCID : "⚠ NOT SET"
-      }`
-    );
-  });
-
-  server.listen(currentPort);
 };
 
 startServer(PORT);
