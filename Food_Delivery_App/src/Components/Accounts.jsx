@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaEdit, FaUserCircle } from 'react-icons/fa';
 
@@ -24,8 +24,8 @@ export default function Accounts() {
       return;
     }
 
-    axios
-      .get(`/food-ordering-app/api/user/profile/${userId}`)
+    api
+      .get(`/api/user/profile/${userId}`)
       .then((res) => {
         setUser(res.data);
         setLoading(false);

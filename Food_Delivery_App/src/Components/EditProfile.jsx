@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCamera, FaArrowLeft, FaSave, FaUserCircle } from 'react-icons/fa';
@@ -38,8 +38,8 @@ export default function EditProfile() {
       return;
     }
 
-    axios
-      .get(`/food-ordering-app/api/user/profile/${userId}`)
+    api
+      .get(`/api/user/profile/${userId}`)
       .then((res) => {
         setForm({
           ...res.data,
@@ -94,8 +94,8 @@ export default function EditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `/food-ordering-app/api/user/profile/${userId}`,
+      await api.put(
+        `/api/user/profile/${userId}`,
         form
       );
       toast.success('Profile updated successfully!');
