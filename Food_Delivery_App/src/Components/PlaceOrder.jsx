@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import io from 'socket.io-client';
+import { socket } from '../socket';
 import 'react-toastify/dist/ReactToastify.css';
 import './PlaceOrder.css';
 
