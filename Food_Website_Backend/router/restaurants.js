@@ -39,6 +39,16 @@ router.post('/restaurants', async (req, res) => {
   }
 });
 
+//  Get All Restaurants (Alias for /list)
+router.get('/', async (req, res) => {
+  try {
+    const restaurants = await Restaurant.find().sort({ createdAt: -1 });
+    res.json(restaurants);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch restaurants' });
+  }
+});
+
 //  Get All Restaurants
 router.get('/list', async (req, res) => {
   try {

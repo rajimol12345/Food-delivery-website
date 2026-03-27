@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://food-delivery-website-k1e1.onrender.com',
+  baseURL: process.env.REACT_APP_API_URL || 'https://food-delivery-website-k1e1.onrender.com',
   timeout: 10000,
 });
 

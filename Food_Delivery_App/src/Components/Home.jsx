@@ -31,7 +31,8 @@ const Home = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const resRes = await axios.get("/api/restaurants/list");
+        const resRes = await axios.get("/api/restaurants");
+        console.log("Restaurants data:", resRes.data);
         setRestaurants(resRes.data);
       } catch (error) {
         console.error("Error loading data:", error);

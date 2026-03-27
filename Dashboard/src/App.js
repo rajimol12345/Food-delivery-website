@@ -31,7 +31,7 @@ import Logout from './components/Logout.jsx';
 import SupportChat from './components/SupportChat.jsx';
 
 // Set global API base URL
-
+axios.defaults.baseURL = 'https://food-delivery-website-k1e1.onrender.com';
 function App() {
   return (
     <>

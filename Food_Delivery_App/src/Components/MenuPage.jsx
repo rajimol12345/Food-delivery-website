@@ -48,6 +48,7 @@ const MenuPage = ({ showCustomToast }) => {
         const menuRes = await axios.get(
           `/api/menu/menus/category/${encodeURIComponent(categoryName)}`
         );
+        console.log("Menu items data:", menuRes.data);
 
         let savedRes = { data: [] };
         if (userId) {

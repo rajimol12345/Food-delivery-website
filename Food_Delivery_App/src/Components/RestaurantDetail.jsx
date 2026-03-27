@@ -12,8 +12,9 @@ const RestaurantDetail = () => {
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/restaurants/list')
+    axios.get('/api/restaurants')
       .then(response => {
+        console.log("Restaurant Detail fetch:", response.data);
         const found = response.data.find(r => r._id?.toString() === restaurantid);
         if (found) {
           setRestaurant(found);

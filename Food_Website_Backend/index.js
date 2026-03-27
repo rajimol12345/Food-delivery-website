@@ -37,7 +37,7 @@ const DASHBOARD_URL = "https://food-delivery-dashboard-yfr9.onrender.com";
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: [FRONTEND_URL, DASHBOARD_URL, "http://localhost:3000", "http://localhost:3001"],
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -102,7 +102,7 @@ io.on("connection", (socket) => {
 // -----------------------------------------------------------------------------
 app.use(
   cors({
-    origin: [FRONTEND_URL, "https://food-delivery-dashboard-yfr9.onrender.com", "http://localhost:3000", "http://localhost:3001"],
+    origin: "*",
     credentials: true,
   })
 );
@@ -158,6 +158,7 @@ app.use("/api/settings", settingsRouter);
 app.use("/api/rate", ratingRouter); 
 app.use("/api/admin", adminRoutes);
 app.use("/api/payment", paymentRouter);
+app.use("/api/food", foodRoutes);
 app.use("/api/foods", foodRoutes);
 app.use("/api/messages", messageRouter);
 
