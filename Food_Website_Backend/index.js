@@ -145,8 +145,11 @@ mongoose
 // -----------------------------------------------------------------------------
 // API ENDPOINTS
 // -----------------------------------------------------------------------------
-app.use("/food-ordering-app/api/user", UserRouter);
-app.use("/api/restaurants", RestaurantRouter);
+app.use("/api/user", UserRouter);
+app.use("/api/restaurants", (req, res, next) => {
+  console.log(`[DEBUG] Restaurants API hit: ${req.method} ${req.url}`);
+  next();
+}, RestaurantRouter);
 app.use("/api/menu", MenuRouter);
 app.use("/api/cart", CartRouter);
 app.use("/api/saved", SavedItemRoutes);

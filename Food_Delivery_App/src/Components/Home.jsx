@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import Search from './Search';
 import FoodCategory from './FoodCategory';
 import RestaurantList from './RestaurantList';
@@ -31,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const resRes = await axios.get("/api/restaurants");
+        const resRes = await api.get("/api/restaurants");
         console.log("Restaurants data:", resRes.data);
         setRestaurants(resRes.data);
       } catch (error) {

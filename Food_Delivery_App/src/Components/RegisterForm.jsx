@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
@@ -24,8 +24,8 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      await axios.post(
-        '/food-ordering-app/api/user/register',
+      await api.post(
+        '/api/user/register',
         {
           fullname: data.fullname,
           email: data.email,

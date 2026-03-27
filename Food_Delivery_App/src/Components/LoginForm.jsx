@@ -38,7 +38,7 @@ export default function LoginForm() {
     setLoading(true);
     try {
       const response = await api.post(
-        '/food-ordering-app/api/user/login',
+        '/api/user/login',
         {
           email: data.email,
           password: data.password, 

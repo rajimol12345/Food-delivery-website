@@ -4,26 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import './FoodCategory.css';
 
 const categories = [
-  { name: 'Biryani', image: './images/Egg Biryani.jpg' },
-  { name: 'Pizzas', image: './images/pizza.jpg' },
-  { name: 'Burgers', image: './images/buger hub.jpg' },
-  { name: 'Noodles', image: './images/noodles.jpg' },
-  { name: 'Paratha', image: './images/Paratha.jpg' },
-  { name: 'Shake', image: './images/shake.jpeg' },
-  { name: 'Samosa', image: './images/samosa.jpg' },
-  { name: 'Sandwich', image: './images/Sandwich.jpg' },
-  { name: 'Ice Cream', image: './images/Ice Cream.jpg' },
-  { name: 'Pasta', image: './images/pasta.png' },
-  { name: 'Soup', image: './images/Soup.jpg' },
-  { name: 'Salad', image: './images/Salad.jpeg' },
-  { name: 'Fries', image: './images/Fries.webp' },
-  { name: 'Dosa', image: './images/masala dosa.avif' },
-  { name: 'Idli', image: './images/Idli Sambar.jpg' },
-  { name: 'Chaat', image: './images/4300.avif' },
-  { name: 'Rolls', image: './images/Rolls.webp' },
-  { name: 'Tandoori', image: './images/Tandoori.png' },
-  { name: 'Thali', image: './images/Thali.webp' },
-  { name: 'Chinese', image: './images/Chinese.webp' }
+  { name: 'Biryani', image: '/images/Egg Biryani.jpg' },
+  { name: 'Pizzas', image: '/images/pizza.jpg' },
+  { name: 'Burgers', image: '/images/buger hub.jpg' },
+  { name: 'Noodles', image: '/images/noodles.jpg' },
+  { name: 'Paratha', image: '/images/Paratha.jpg' },
+  { name: 'Shake', image: '/images/shake.jpeg' },
+  { name: 'Samosa', image: '/images/samosa.jpg' },
+  { name: 'Sandwich', image: '/images/Sandwich.jpg' },
+  { name: 'Ice Cream', image: '/images/Ice Cream.jpg' },
+  { name: 'Pasta', image: '/images/pasta.png' },
+  { name: 'Soup', image: '/images/Soup.jpg' },
+  { name: 'Salad', image: '/images/Salad.jpeg' },
+  { name: 'Fries', image: '/images/Fries.webp' },
+  { name: 'Dosa', image: '/images/masala dosa.avif' },
+  { name: 'Idli', image: '/images/Idli Sambar.jpg' },
+  { name: 'Chaat', image: '/images/4300.avif' },
+  { name: 'Rolls', image: '/images/Rolls.webp' },
+  { name: 'Tandoori', image: '/images/Tandoori.png' },
+  { name: 'Thali', image: '/images/Thali.webp' },
+  { name: 'Chinese', image: '/images/Chinese.webp' }
 ];
 
 const FoodCategory = () => {
