@@ -24,7 +24,7 @@ export default function RegisterForm() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         '/food-ordering-app/api/user/register',
         {
           fullname: data.fullname,
@@ -34,8 +34,6 @@ export default function RegisterForm() {
           confirmPassword: data.confirm_password,
         }
       );
-
-      console.log("SUCCESS RESPONSE:", response.data);
 
       toast.success('Registration successful!');
       reset();

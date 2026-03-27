@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaTag, FaPercentage, FaTruck, FaRegClock } from 'react-icons/fa';
 
+// Utility: Calculate initial expiry based on hours from now
+const getExpiryDate = (hours) => new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
+
+const defaultOffers = [
+  { title: "50% OFF First Order", desc: "Premium quality meals delivered to your doorstep.", code: "EATWAY50", type: "discount", expiry: getExpiryDate(48) },
+  { title: "Complimentary Delivery", desc: "Enjoy free shipping on all orders over ₹500.", code: "FREEDELAY", type: "truck", expiry: getExpiryDate(12) },
+  { title: "Exclusive BOGO Deal", desc: "Buy 1 Get 1 Free on all signature desserts.", code: "SWEETBOGO", type: "tag", expiry: getExpiryDate(72) },
+  { title: "Digital Payment Bonus", desc: "Flat ₹200 cashback via UPI or Credit Cards.", code: "PAYLATER", type: "discount", expiry: getExpiryDate(5) }
+];
+
 const Offers = ({ offers }) => {
-  // Utility: Calculate initial expiry based on hours from now
-  const getExpiryDate = (hours) => new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
 
-  const defaultOffers = [
-    { title: "50% OFF First Order", desc: "Premium quality meals delivered to your doorstep.", code: "EATWAY50", type: "discount", expiry: getExpiryDate(48) },
-    { title: "Complimentary Delivery", desc: "Enjoy free shipping on all orders over ₹500.", code: "FREEDELAY", type: "truck", expiry: getExpiryDate(12) },
-    { title: "Exclusive BOGO Deal", desc: "Buy 1 Get 1 Free on all signature desserts.", code: "SWEETBOGO", type: "tag", expiry: getExpiryDate(72) },
-    { title: "Digital Payment Bonus", desc: "Flat ₹200 cashback via UPI or Credit Cards.", code: "PAYLATER", type: "discount", expiry: getExpiryDate(5) }
-  ];
-
-  const initialOffers = (offers && offers.length > 0) 
+  const initialOffers = useMemo(() => (offers && offers.length > 0) 
     ? offers.map((o, i) => ({ 
         title: o, 
         desc: "Exclusive partner offer. Limited availability.", 
@@ -21,7 +22,7 @@ const Offers = ({ offers }) => {
         type: i % 2 === 0 ? "discount" : "truck",
         expiry: getExpiryDate(24 + (i * 6))
       }))
-    : defaultOffers;
+    : defaultOffers, [offers]);
 
   const [timeLeft, setTimeLeft] = useState({});
 
@@ -48,7 +49,7 @@ const Offers = ({ offers }) => {
     calculateTimeLeft(); // Initial run
 
     return () => clearInterval(timer);
-  }, []);
+  }, [initialOffers]);
 
   const formatTime = (time) => {
     if (!time) return "EXPIRED";

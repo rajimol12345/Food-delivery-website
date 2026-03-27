@@ -6,7 +6,6 @@ import "./UpiPayment.css";
 function UpiPayment({ amount, onSuccess }) {
   const [isGPayReady, setIsGReady] = useState(false);
   const [gpayError, setGPayError] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
   const paymentAmount = Number(amount);
 
   const upiLink = `upi://pay?pa=yourupiid@bank&pn=DemoShop&am=${paymentAmount}&cu=INR&tn=Order123`;
@@ -75,8 +74,8 @@ function UpiPayment({ amount, onSuccess }) {
       <p style={{ textAlign: "center" }}>OR</p>
       <div className="upi-qr">
         <QRCodeSVG value={upiLink} size={200} />
-        <button className="confirm-payment-btn" onClick={() => onSuccess("QR")} disabled={isVerifying}>
-          {isVerifying ? "Verifying..." : "I Have Paid via QR"}
+        <button className="confirm-payment-btn" onClick={() => onSuccess("QR")}>
+          I Have Paid via QR
         </button>
       </div>
       <div className="demo-bypass">
