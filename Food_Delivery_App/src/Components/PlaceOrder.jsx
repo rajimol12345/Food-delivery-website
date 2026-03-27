@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 import 'react-toastify/dist/ReactToastify.css';
 import './PlaceOrder.css';
 
-const socket = io('');
+
 
 const PlaceOrder = () => {
   const location = useLocation();

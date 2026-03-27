@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaHeadset, FaPaperPlane, FaTimes, FaMinus } from 'react-icons/fa';
 import './ChatBot.css';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://food-delivery-website-k1e1.onrender.com');
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);

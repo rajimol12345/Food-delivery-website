@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaUserCircle, FaPaperPlane, FaSearch, FaHeadset } from 'react-icons/fa';
 import './SupportChat.css';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://food-delivery-website-k1e1.onrender.com');
 
 const SupportChat = () => {
   const [conversations, setConversations] = useState([]);

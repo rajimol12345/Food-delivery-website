@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
+import api from '../api'; 
 const AdminLogin = () => {
   const {
     register,
@@ -18,7 +18,7 @@ const AdminLogin = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('/api/admin/login', {
+      const response = await api.post('/api/admin/login', {
         email: data.email,
         password: data.password,
       });

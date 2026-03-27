@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
@@ -37,7 +37,7 @@ export default function LoginForm() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      const response = await axios.post(
+      const response = await api.post(
         '/food-ordering-app/api/user/login',
         {
           email: data.email,

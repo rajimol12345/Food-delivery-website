@@ -29,6 +29,7 @@ const app = express();
 // Render usually uses port 10000, process.env.PORT handles this automatically
 const PORT = process.env.PORT || 5000;
 const FRONTEND_URL = "https://food-delivery-app-yfr9.onrender.com";
+const DASHBOARD_URL = "https://food-delivery-dashboard-yfr9.onrender.com"; // Assuming similar pattern if not provided
 
 // -----------------------------------------------------------------------------
 // HTTP SERVER + SOCKET.IO SETUP
@@ -36,10 +37,11 @@ const FRONTEND_URL = "https://food-delivery-app-yfr9.onrender.com";
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    // Added your Render frontend link here
-    origin: [FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
+    origin: [FRONTEND_URL, DASHBOARD_URL, "http://localhost:3000", "http://localhost:3001"],
+    methods: ["GET", "POST"],
     credentials: true,
   },
+  transports: ['websocket', 'polling']
 });
 
 app.set("io", io);
@@ -99,8 +101,7 @@ io.on("connection", (socket) => {
 // -----------------------------------------------------------------------------
 app.use(
   cors({
-    // Updated to allow your specific Render frontend
-    origin: [FRONTEND_URL, "http://localhost:3000", "http://localhost:3001"],
+    origin: [FRONTEND_URL, "https://food-delivery-dashboard-yfr9.onrender.com", "http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   })
 );
