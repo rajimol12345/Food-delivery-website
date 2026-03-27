@@ -36,7 +36,7 @@ import ChatBot from './Components/ChatBot.jsx';
 import axios from 'axios';
 
 // Set global API base URL
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://food-delivery-website-k1e1.onrender.com';
 
 function App() {
   const location = useLocation();
