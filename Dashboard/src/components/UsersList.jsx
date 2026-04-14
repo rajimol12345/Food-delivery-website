@@ -20,7 +20,7 @@ const UsersList = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('/food-ordering-app/api/user/userslist');
+      const res = await axios.get('/api/user/userslist');
       setUsers(res.data);
       setFilteredUsers(res.data);
     } catch (err) {
@@ -46,7 +46,7 @@ const UsersList = () => {
 
     try {
       const res = await axios.delete(
-        `/food-ordering-app/api/user/deleteProfile/${userId}`
+        `/api/user/deleteProfile/${userId}`
       );
 
       if (res.status === 200) {

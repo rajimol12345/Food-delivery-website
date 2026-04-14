@@ -1,6 +1,6 @@
 // Checkout.jsx
 import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import './Checkout.css'; 
 
@@ -27,7 +27,7 @@ const Checkout = () => {
 
   const fetchUserProfile = useCallback(async () => {
     try {
-      const res = await axios.get(`/food-ordering-app/api/user/profile/${userId}`);
+      const res = await api.get(`/api/user/profile/${userId}`);
       const user = res.data;
       setForm({
         name: user.fullname || '',
@@ -43,7 +43,7 @@ const Checkout = () => {
 
   const fetchCartItems = useCallback(async () => {
     try {
-      const res = await axios.get(`/api/cart/${userId}`);
+      const res = await api.get(`/api/cart/${userId}`);
       setCartItems(res.data);
     } catch (err) {
       console.error('Error fetching cart items:', err);
@@ -77,8 +77,8 @@ const Checkout = () => {
     }
 
     try {
-      await axios.put(
-        `/food-ordering-app/api/user/profile/${userId}`,
+      await api.put(
+        `/api/user/profile/${userId}`,
         {
           deliveryAddress: {
             line1: form.line1,
@@ -141,7 +141,7 @@ const Checkout = () => {
                 className="checkout-item-img"
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://via.placeholder.com/70?text=No+Img';
+                  e.target.src = 'https://placehold.co/70x70?text=No+Img';
                 }}
               />
 
