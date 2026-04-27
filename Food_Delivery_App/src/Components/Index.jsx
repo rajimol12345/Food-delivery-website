@@ -1,93 +1,131 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaRocket, FaMapMarkerAlt, FaGem, FaApple, FaGooglePlay } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaRocket, FaMapMarkerAlt, FaGem, FaApple, FaGooglePlay, FaArrowRight, FaPlay } from 'react-icons/fa';
 import './Index.css';
 
 const Index = () => {
   return (
-    <div className="index-page">
-      {/* Navigation Header */}
-      <header className="index-header">
-        <div className="logo">EatToWay</div>
-        <nav className="headnav-buttons">
-          <Link to="/LoginForm" className="headnav-item login">Login</Link>
-          <Link to="/RegisterForm" className="headnav-item signup">Signup</Link>
-        </nav>
+    <div className="index-premium">
+      {/* HEADER */}
+      <header className="premium-nav">
+        <div className="container d-flex justify-content-between align-items-center">
+          <div className="premium-logo">EatYoWay<span>.</span></div>
+          <div className="nav-auth-buttons">
+            <Link to="/LoginForm" className="btn-nav-login">Login</Link>
+            <Link to="/RegisterForm" className="btn-nav-signup">Sign Up</Link>
+          </div>
+        </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="index-hero">
-        <div className="index-hero-content">
-          <h1 className="index-hero-title">Hungry? You're in the Right Place.</h1>
-          <p className="index-hero-subtitle">
-            Order delicious meals from the best local restaurants delivered straight to your doorstep.
-          </p>
-          <Link to="/LoginForm" className="index-hero-btn">Get Started</Link>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="index-features">
-        <div className="section-title-wrap">
-          <h2>Why Choose EatToWay?</h2>
-          <p>We combine technology with taste to bring you the smoothest food ordering experience.</p>
-        </div>
-
-        <div className="features-grid">
-          <div className="feature-card">
-            <span className="feature-icon"><FaRocket /></span>
-            <h3>Ultra Fast Delivery</h3>
-            <p>Our delivery partners are optimized to get your food while it's still piping hot.</p>
-          </div>
-          <div className="feature-card">
-            <span className="feature-icon"><FaMapMarkerAlt /></span>
-            <h3>Live Tracking</h3>
-            <p>Track your order in real-time from the kitchen to your front door.</p>
-          </div>
-          <div className="feature-card">
-            <span className="feature-icon"><FaGem /></span>
-            <h3>Best Offers</h3>
-            <p>Enjoy exclusive discounts and deals from your favorite restaurants every day.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* App Promo Section */}
-      <section className="app-promo-container">
-        <div className="app-promo">
-          <div className="app-promo-content">
-            <h2>Order on the go</h2>
-            <p>Download our mobile app for a faster and more personalized experience. Available on iOS and Android.</p>
-            <div className="app-links">
-              <div className="app-btn">
-                <FaApple className="app-icon" />
-                <div className="btn-text">
-                  <span className="small-text">Download on the</span>
-                  <span className="large-text">App Store</span>
+      {/* HERO SECTION */}
+      <section className="premium-hero">
+        <div className="hero-bg-overlay"></div>
+        <div className="container position-relative z-index-2">
+          <div className="row align-items-center min-vh-100">
+            <div className="col-lg-7 text-start">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="badge-premium mb-3">#1 Food Delivery Service</span>
+                <h1 className="hero-title-premium">
+                  Delicious Food <br />
+                  <span>Delivered Fast.</span>
+                </h1>
+                <p className="hero-subtitle-premium">
+                  Experience the best culinary delights from top restaurants, delivered right to your doorstep with lightning speed and care.
+                </p>
+                <div className="hero-cta-group">
+                  <Link to="/RegisterForm" className="btn-premium-primary">
+                    Get Started <FaArrowRight />
+                  </Link>
+                  <button className="btn-premium-outline">
+                    <FaPlay className="me-2" /> How it Works
+                  </button>
                 </div>
-              </div>
-              <div className="app-btn">
-                <FaGooglePlay className="app-icon" />
-                <div className="btn-text">
-                  <span className="small-text">GET IT ON</span>
-                  <span className="large-text">Google Play</span>
-                </div>
-              </div>
+              </motion.div>
             </div>
           </div>
-          <div className="app-promo-image">
-            <div className="phone-mockup">
-               <div className="mock-screen">
-                  <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80" alt="App Preview" className="mock-app-image" />
-                  <div className="mock-overlay">
-                    <div className="mock-logo-small">EatToWay</div>
+        </div>
+      </section>
+
+      {/* FEATURES */}
+      <section className="premium-features py-100">
+        <div className="container">
+          <div className="section-header-center">
+            <h2 className="title-md">Why Choose EatYoWay?</h2>
+            <p className="subtitle-md">We bring together the best of technology and taste.</p>
+          </div>
+          <div className="row g-4 mt-5">
+            <div className="col-md-4">
+              <motion.div className="feature-item-premium" whileHover={{ y: -10 }}>
+                <div className="icon-wrapper"><FaRocket /></div>
+                <h3>Super Fast Delivery</h3>
+                <p>Our optimized delivery routes ensure your food arrives hot and fresh every time.</p>
+              </motion.div>
+            </div>
+            <div className="col-md-4">
+              <motion.div className="feature-item-premium" whileHover={{ y: -10 }}>
+                <div className="icon-wrapper"><FaMapMarkerAlt /></div>
+                <h3>Live Tracking</h3>
+                <p>Follow your meal's journey in real-time from the restaurant kitchen to your door.</p>
+              </motion.div>
+            </div>
+            <div className="col-md-4">
+              <motion.div className="feature-item-premium" whileHover={{ y: -10 }}>
+                <div className="icon-wrapper"><FaGem /></div>
+                <h3>Exclusive Rewards</h3>
+                <p>Earn points on every order and unlock premium discounts at your favorite spots.</p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* APP PROMO */}
+      <section className="premium-app-promo">
+        <div className="container">
+          <div className="app-promo-inner">
+            <div className="row align-items-center">
+              <div className="col-lg-6">
+                <h2 className="promo-title">Food delivery in your pocket</h2>
+                <p className="promo-text">Download our mobile app to order faster, track your food effortlessly, and get exclusive app-only deals.</p>
+                <div className="app-store-btns">
+                  <div className="store-btn">
+                    <FaApple className="icon" />
+                    <div>
+                      <small>Download on the</small>
+                      <strong>App Store</strong>
+                    </div>
                   </div>
-               </div>
+                  <div className="store-btn">
+                    <FaGooglePlay className="icon" />
+                    <div>
+                      <small>Get it on</small>
+                      <strong>Google Play</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6 d-none d-lg-block">
+                <div className="phone-mockup-premium">
+                  <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="App Preview" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* CALL TO ACTION */}
+      <section className="final-cta text-center py-100">
+        <div className="container">
+          <h2 className="cta-title">Ready to satisfy your cravings?</h2>
+          <Link to="/RegisterForm" className="btn-premium-primary lg">Order Your First Meal Now</Link>
+        </div>
+      </section>
     </div>
   );
 };

@@ -33,6 +33,7 @@ import Dashboard from './Components/Dashboard.jsx';
 import UserInfo from './Components/UserInfo.jsx';
 import Analytics from './Components/Analytics.jsx';
 import ChatBot from './Components/ChatBot.jsx';
+import ScrollToTop from './Components/ScrollToTop';
 import axios from 'axios';
 
 // Set global API base URL
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <div>
+      <ScrollToTop />
       {/* Header */}
       {!shouldHideHeader && <Header />}
 

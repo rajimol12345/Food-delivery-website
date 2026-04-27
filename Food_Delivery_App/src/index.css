@@ -1,64 +1,66 @@
+/* index.css - Root Styles & Responsive Fundamentals */
+:root {
+  --primary-color: #fc8019;
+  --secondary-color: #2d2d2d;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #333;
+  overflow-x: hidden; /* Prevent horizontal scroll globally */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Global Responsive Utilities */
+.container-premium {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
-/* Standardized Wishlist Icon */
-.wishlist-icon-standard {
-  all: unset; /* Clear all browser & Bootstrap defaults */
-  position: absolute !important;
-  top: 15px !important;
-  right: 15px !important;
-  width: 40px !important;
-  height: 40px !important;
-  background: rgba(255, 255, 255, 0.6) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.8) !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  cursor: pointer !important;
-  z-index: 10 !important;
-  color: #6c757d !important; /* Premium slate grey for unsaved */
-  font-size: 18px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), inset 0 0 0 transparent !important;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+@media (min-width: 768px) {
+  .container-premium {
+    padding: 0 30px;
+  }
 }
 
-.wishlist-icon-standard:hover {
-  transform: translateY(-2px) scale(1.08) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), inset 0 2px 5px rgba(255, 255, 255, 0.5) !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #ff4757 !important;
-  border-color: #ffffff !important;
+/* Global Font Scaling */
+html {
+  font-size: 14px;
 }
 
-.wishlist-icon-standard:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+@media (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
 }
 
-.wishlist-icon-standard.saved {
-  color: #ff4757 !important; /* Heart turns vibrant red when saved */
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: #ffffff !important;
-  animation: heart-pop-standard 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
 }
 
-@keyframes heart-pop-standard {
-  0% { transform: scale(1); }
-  45% { transform: scale(1.35) rotate(-5deg); }
-  65% { transform: scale(0.95) rotate(3deg); }
-  100% { transform: scale(1) rotate(0); }
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fc8019;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e67216;
 }

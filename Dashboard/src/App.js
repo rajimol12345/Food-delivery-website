@@ -30,11 +30,14 @@ import EditOrder from './components/EditOrder.jsx';
 import Logout from './components/Logout.jsx';
 import SupportChat from './components/SupportChat.jsx';
 
+import ScrollToTop from './components/ScrollToTop';
+
 // Set global API base URL
 axios.defaults.baseURL = 'https://food-delivery-website-k1e1.onrender.com';
 function App() {
   return (
     <>
+      <ScrollToTop />
       {/* Toast container must be outside Routes */}
       <ToastContainer position="bottom-left" autoClose={3000} pauseOnHover />
 

@@ -1,33 +1,52 @@
 .checkout-container {
-  padding: 80px 20px;
+  padding: 40px 15px; /* Reduced for mobile */
   max-width: 1200px;
   margin: auto;
   font-family: 'Inter', sans-serif;
   min-height: 80vh;
 }
 
+@media (min-width: 768px) {
+  .checkout-container {
+    padding: 80px 20px;
+  }
+}
+
 .checkout-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 3.5rem;
+  font-size: 2rem; /* Scaled for mobile */
   font-weight: 800;
   color: #1a1a1a;
   text-align: center;
-  margin-bottom: 60px;
-  letter-spacing: -2px;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+}
+
+@media (min-width: 768px) {
+  .checkout-title {
+    font-size: 3.5rem;
+    margin-bottom: 60px;
+    letter-spacing: -2px;
+  }
 }
 
 .checkout-grid {
   display: flex;
+  flex-direction: column; /* Stacked on mobile */
   gap: 2rem;
-  flex-wrap: wrap;
+}
+
+@media (min-width: 992px) {
+  .checkout-grid {
+    flex-direction: row;
+  }
 }
 
 .checkout-form {
   flex: 1.2;
-  min-width: 320px;
   background: white;
-  padding: 40px;
-  border-radius: 24px;
+  padding: 25px; /* Reduced for mobile */
+  border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.03);
   display: flex;
@@ -35,133 +54,32 @@
   gap: 20px;
 }
 
-.checkout-form h4 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #f8f9fa;
-  padding-bottom: 15px;
-}
-
-.checkout-form input {
-  padding: 14px 20px;
-  border: 1.5px solid #eee;
-  border-radius: 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: #fdfdfd;
-}
-
-.checkout-form input:focus {
-  outline: none;
-  border-color: #fc8019;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(252, 128, 25, 0.1);
+@media (min-width: 768px) {
+  .checkout-form {
+    padding: 40px;
+    border-radius: 24px;
+  }
 }
 
 .checkout-summary {
   flex: 0.8;
-  min-width: 300px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 40px;
-  border-radius: 24px;
+  padding: 25px; /* Reduced for mobile */
+  border-radius: 20px;
   border: 1px solid rgba(252, 128, 25, 0.2);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
-.checkout-summary h4 {
-  margin-bottom: 1rem;
-  color: #333;
+@media (min-width: 768px) {
+  .checkout-summary {
+    padding: 40px;
+    border-radius: 24px;
+  }
 }
 
-/* Item display */
-.checkout-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px dashed #ccc;
-}
-
-.checkout-item-img {
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 10px;
-}
-
-.checkout-item-details {
-  flex: 1;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.checkout-item-name {
-  font-weight: 600;
-  color: #333;
-}
-
-.checkout-item-qty {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.checkout-item-price {
-  font-weight: 600;
-  color: green;
-}
-
-.checkout-total {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  padding-top: 10px;
-  margin-top: 10px;
-  border-top: 2px solid #fc8019;
-}
-
-.checkout-total .price {
-  color: green;
-}
-
-.checkout-btn {
-  background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border-radius: 14px;
-  margin-top: 30px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 10px 25px rgba(252, 128, 25, 0.3);
-}
-
-.checkout-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(252, 128, 25, 0.45);
-}
-
-.checkout-message {
-  padding: 2rem;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-.checkout-message.success {
-  color: green;
-}
-
-.checkout-message.error {
-  color: red;
+.checkout-total .value {
+  color: #28a745;
+  font-weight: 800;
 }
