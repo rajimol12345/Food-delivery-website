@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaSearch, FaTruck, FaUtensils, FaMobileAlt, FaStar, FaQuoteLeft, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
+import { FaTruck, FaUtensils, FaMobileAlt, FaStar, FaQuoteLeft, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
 import api from '../api';
 import Search from './Search';
 import FoodCategory from './FoodCategory';
 import RestaurantList from './RestaurantList';
-import OfferPopup from './OfferPopup';
 import Offers from './Offers';
 
 import img1 from './img/hero1.jpg';
@@ -19,7 +18,6 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [showOffer, setShowOffer] = useState(false);
 
   const carouselImages = [img1, img2, img3];
 
@@ -53,9 +51,6 @@ const Home = () => {
     };
 
     loadData();
-
-    const timer = setTimeout(() => setShowOffer(true), 2000);
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -264,8 +259,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* OFFER POPUP */}
-      {showOffer && <OfferPopup onClose={() => setShowOffer(false)} />}
     </div>
   );
 };
