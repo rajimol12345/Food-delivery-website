@@ -187,36 +187,56 @@
 
 /* ===== MODERN ACCOUNT PAGE ===== */
 .account-container {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 0 20px;
+  max-width: 900px; /* Increased for better desktop look */
+  margin: 40px auto;
+  padding: 0 15px;
   min-height: 70vh;
+}
+
+@media (min-width: 768px) {
+  .account-container {
+    margin: 60px auto;
+    padding: 0 30px;
+  }
 }
 
 .account-container h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
   color: #1a1a1a;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-align: center;
   letter-spacing: -1px;
 }
 
+@media (min-width: 768px) {
+  .account-container h2 {
+    font-size: 2.8rem;
+    margin-bottom: 45px;
+  }
+}
+
 .account-card {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 30px;
+  padding: 30px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .account-card {
+    padding: 50px;
+  }
 }
 
 .account-card:hover {
-  transform: translateY(-5px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.08);
 }
 
 .profile-section {
@@ -509,31 +529,6 @@
   /* ... existing media queries ... */
 }
 
-/* Hero Section */
-.hero {
-  height: 100vh;
-  width: 100%;
-  background: url("./Components/img/top-view-circular-food-frame.jpg") no-repeat center center/cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;   /* Center horizontally */
-  text-align: center;    /* Align text center */
-  padding: 0 20px;
-  color: #ffffff;          /* Default text color */
-}
-
-.hero-title {
-  font-size: 64px;
-  font-weight: 800;
-  margin-bottom: 20px;
-  color: #ffffff;          /* Heading text color */
-}
-
-.hero-subtitle {
-  font-size: 24px;
-  font-weight: 400;
-  max-width: 700px;
-  line-height: 1.4;
-  color: #ffffff;          /* Subtitle text color */
+@media (max-width: 992px) {
+  /* No additional overrides needed here for now as individual components handle their responsiveness. */
 }

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaTag, FaPercentage, FaTruck, FaRegClock } from 'react-icons/fa';
 
-// Utility: Calculate initial expiry based on hours from now
 const getExpiryDate = (hours) => new Date(Date.now() + hours * 60 * 60 * 1000).toISOString();
 
 const defaultOffers = [
@@ -13,7 +12,6 @@ const defaultOffers = [
 ];
 
 const Offers = ({ offers }) => {
-
   const initialOffers = useMemo(() => (offers && offers.length > 0) 
     ? offers.map((o, i) => ({ 
         title: o, 
@@ -39,15 +37,13 @@ const Offers = ({ offers }) => {
             s: Math.floor((difference / 1000) % 60)
           };
         } else {
-          newTimeLeft[idx] = null; // Expired
+          newTimeLeft[idx] = null;
         }
       });
       setTimeLeft(newTimeLeft);
     };
-
     const timer = setInterval(calculateTimeLeft, 1000);
-    calculateTimeLeft(); // Initial run
-
+    calculateTimeLeft();
     return () => clearInterval(timer);
   }, [initialOffers]);
 
@@ -66,14 +62,11 @@ const Offers = ({ offers }) => {
 
   return (
     <section className="premium-offers-section">
-      <div className="container-fluid px-3 px-lg-5">
-        <div className="section-header-professional">
-          <div className="header-label">
-            <span className="accent-dot"></span>
-            LIMITED TIME OFFERS
-          </div>
-          <h2 className="header-title-professional">Exclusive Promotions</h2>
-          <p className="header-subtitle-professional">Curated deals from our top-rated restaurants, just for you.</p>
+      <div className="container">
+        <div className="section-header-modern">
+          <div className="header-badge">EXCLUSIVE DEALS</div>
+          <h2 className="header-title">Limited Time Offers</h2>
+          <p className="header-subtitle">Unlock premium savings from our top-rated restaurant partners.</p>
         </div>
 
         <div className="professional-offers-grid">
@@ -86,13 +79,12 @@ const Offers = ({ offers }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="card-accent-bar"></div>
               <div className="card-top-professional">
                 <div className={`offer-icon-professional ${offer.type}`}>
                   {offer.type === "truck" ? <FaTruck /> : offer.type === "tag" ? <FaTag /> : <FaPercentage />}
                 </div>
                 <div className={`validity-badge-professional ${!timeLeft[index] ? 'expired' : ''}`}>
-                  <FaRegClock className="me-1" /> {formatTime(timeLeft[index])}
+                   {formatTime(timeLeft[index])}
                 </div>
               </div>
 
@@ -101,10 +93,12 @@ const Offers = ({ offers }) => {
                 <p className="offer-desc-professional">{offer.desc}</p>
                 
                 <div className="coupon-container-professional">
-                  <span className="coupon-label">USE CODE</span>
                   <div className="coupon-code-wrapper">
                     <code>{offer.code}</code>
-                    <button className="copy-btn-minimal" onClick={() => navigator.clipboard.writeText(offer.code)}>
+                    <button className="copy-btn-minimal" onClick={() => {
+                        navigator.clipboard.writeText(offer.code);
+                        alert("Code copied!");
+                    }}>
                       COPY
                     </button>
                   </div>
@@ -117,231 +111,167 @@ const Offers = ({ offers }) => {
 
       <style>{`
         .premium-offers-section {
-          background-color: #fafbfc;
-          padding: 85px 0;
-          border-top: 1px solid rgba(0,0,0,0.02);
-          border-bottom: 1px solid rgba(0,0,0,0.02);
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background-color: #ffffff;
+          padding: 100px 0;
+          font-family: 'Inter', sans-serif;
         }
 
-        .section-header-professional {
-          margin-bottom: 50px;
-          text-align: left;
-          padding: 0 15px;
+        .section-header-modern {
+          text-align: center;
+          margin-bottom: 60px;
+          padding: 0 20px;
         }
 
-        .header-label {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 13px;
-          font-weight: 800;
-          color: #fc8019;
-          letter-spacing: 2px;
-          margin-bottom: 14px;
-          text-transform: uppercase;
-        }
-
-        .accent-dot {
-          width: 8px;
-          height: 8px;
-          background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
-          border-radius: 50%;
+        .header-badge {
           display: inline-block;
-          box-shadow: 0 0 10px rgba(252, 128, 25, 0.4);
+          background: rgba(252, 128, 25, 0.1);
+          color: #fc8019;
+          padding: 6px 20px;
+          border-radius: 50px;
+          font-weight: 800;
+          font-size: 0.8rem;
+          letter-spacing: 2px;
+          margin-bottom: 15px;
         }
 
-        .header-title-professional {
-          font-size: 38px;
+        .header-title {
+          font-family: 'Poppins', sans-serif;
+          font-size: 2.5rem;
           font-weight: 800;
           color: #1a1a1a;
-          margin-bottom: 12px;
+          margin-bottom: 15px;
           letter-spacing: -1px;
         }
 
-        .header-subtitle-professional {
+        .header-subtitle {
+          font-size: 1.1rem;
           color: #666;
-          font-size: 17px;
           max-width: 600px;
-          line-height: 1.6;
+          margin: 0 auto;
         }
 
         .professional-offers-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
-          padding: 0 15px;
+          gap: 25px;
+          padding: 0 20px;
         }
 
         .professional-offer-card {
-          background: #ffffff;
-          border: 1px solid rgba(0,0,0,0.03);
-          border-radius: 20px;
-          padding: 30px;
-          position: relative;
+          background: #fbfbfc;
+          border: 1.5px solid #f0f0f0;
+          border-radius: 28px;
+          padding: 35px;
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           display: flex;
           flex-direction: column;
-          overflow: hidden;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-          cursor: pointer;
+          position: relative;
         }
 
         .professional-offer-card:hover {
-          border-color: rgba(252, 128, 25, 0.2);
-          box-shadow: 0 20px 40px rgba(252, 128, 25, 0.08);
-          transform: translateY(-8px);
-        }
-
-        .card-accent-bar {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 0%;
-          height: 5px;
-          background: linear-gradient(90deg, #fc8019, #ff9e43);
-          transition: width 0.4s ease;
-        }
-
-        .professional-offer-card:hover .card-accent-bar {
-          width: 100%;
+          background: #ffffff;
+          border-color: #fc8019;
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.06);
         }
 
         .card-top-professional {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 25px;
+          margin-bottom: 30px;
         }
 
         .offer-icon-professional {
-          width: 50px;
-          height: 50px;
-          border-radius: 14px;
+          width: 55px;
+          height: 55px;
+          border-radius: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.4rem;
-          background: rgba(252, 128, 25, 0.06);
+          font-size: 1.5rem;
+          background: #ffffff;
           color: #fc8019;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.03);
           transition: all 0.4s ease;
         }
 
         .professional-offer-card:hover .offer-icon-professional {
-          background: linear-gradient(135deg, #fc8019 0%, #ff9e43 100%);
+          background: #fc8019;
           color: #ffffff;
-          transform: scale(1.1) rotate(5deg);
-          box-shadow: 0 8px 15px rgba(252, 128, 25, 0.2);
+          transform: scale(1.1);
         }
 
         .validity-badge-professional {
-          font-size: 11px;
-          font-weight: 700;
-          color: #fc8019;
-          display: flex;
-          align-items: center;
-          background: rgba(252, 128, 25, 0.1);
-          padding: 6px 12px;
-          border-radius: 20px;
-          transition: all 0.3s ease;
-          font-family: 'JetBrains Mono', monospace;
-          min-width: 110px;
-          justify-content: center;
-        }
-
-        .validity-badge-professional.expired {
-          color: #dc3545;
-          background: rgba(220, 53, 69, 0.1);
-        }
-
-        .professional-offer-card:hover .validity-badge-professional {
-          background: rgba(252, 128, 25, 0.2);
+          font-size: 0.75rem;
+          font-weight: 800;
+          color: #333;
+          background: #ffffff;
+          padding: 8px 15px;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+          font-family: monospace;
         }
 
         .offer-title-professional {
-          font-size: 20px;
+          font-family: 'Poppins', sans-serif;
+          font-size: 1.4rem;
           font-weight: 800;
           color: #1a1a1a;
-          margin-bottom: 10px;
-          letter-spacing: -0.3px;
+          margin-bottom: 12px;
         }
 
         .offer-desc-professional {
-          font-size: 15px;
+          font-size: 0.95rem;
           color: #666;
           line-height: 1.6;
           margin-bottom: 30px;
           flex-grow: 1;
         }
 
-        .coupon-container-professional {
-          border-top: 1px dashed rgba(0,0,0,0.08);
-          padding-top: 25px;
-          transition: border-color 0.3s ease;
-        }
-
-        .professional-offer-card:hover .coupon-container-professional {
-          border-color: rgba(252, 128, 25, 0.2);
-        }
-
-        .coupon-label {
-          display: block;
-          font-size: 11px;
-          font-weight: 800;
-          color: #999;
-          letter-spacing: 1.5px;
-          margin-bottom: 10px;
-        }
-
         .coupon-code-wrapper {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          background: #fcfcfc;
-          border: 1px solid rgba(0,0,0,0.05);
-          padding: 10px 14px;
-          border-radius: 12px;
+          background: #ffffff;
+          border: 2px dashed #eee;
+          padding: 12px 18px;
+          border-radius: 16px;
           transition: all 0.3s ease;
         }
 
         .professional-offer-card:hover .coupon-code-wrapper {
+          border-color: #fc8019;
           background: rgba(252, 128, 25, 0.02);
-          border-color: rgba(252, 128, 25, 0.15);
         }
 
         .coupon-code-wrapper code {
-          font-family: 'JetBrains Mono', 'Fira Code', monospace;
-          font-size: 15px;
+          font-size: 1rem;
           font-weight: 800;
           color: #fc8019;
           letter-spacing: 1px;
         }
 
         .copy-btn-minimal {
-          background: rgba(0,0,0,0.04);
+          background: #fc8019;
           border: none;
-          color: #555;
-          font-size: 11px;
+          color: #fff;
+          font-size: 0.75rem;
           font-weight: 800;
           cursor: pointer;
-          padding: 6px 12px;
-          border-radius: 6px;
-          transition: all 0.2s ease;
+          padding: 6px 14px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
         }
 
         .copy-btn-minimal:hover {
-          background: #fc8019;
-          color: #fff;
-          box-shadow: 0 4px 10px rgba(252, 128, 25, 0.3);
+          background: #e67216;
+          transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
-          .premium-offers-section {
-            padding: 60px 0;
-          }
-          .header-title-professional {
-            font-size: 30px;
-          }
+          .header-title { font-size: 1.8rem; }
+          .premium-offers-section { padding: 60px 0; }
         }
       `}</style>
     </section>

@@ -1,27 +1,57 @@
+/* UpiPayment.css - Professional & Responsive Payment Styles */
+
 .upi-payment-container {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 30px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 20px; /* Reduced for mobile */
   border-radius: 24px;
-  border: 1px solid rgba(252, 128, 25, 0.1);
+  border: 1.5px solid rgba(252, 128, 25, 0.1);
   text-align: center;
   margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .upi-payment-container {
+    padding: 40px;
+  }
 }
 
 .upi-payment-container h2 {
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   color: #1a1a1a;
   margin-bottom: 25px;
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+@media (min-width: 768px) {
+  .upi-payment-container h2 {
+    font-size: 2rem;
+  }
 }
 
 .qr-wrapper {
   background: white;
-  padding: 25px;
+  padding: 15px; /* Reduced for mobile */
   border-radius: 20px;
   display: inline-block;
-  margin: 20px 0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin: 15px 0;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   border: 2px solid #f8f9fa;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .qr-wrapper {
+    padding: 25px;
+    margin: 20px 0;
+  }
+}
+
+.qr-wrapper:hover {
+  transform: scale(1.02);
 }
 
 .confirm-payment-btn {
@@ -30,59 +60,64 @@
   border: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  padding: 12px 30px;
-  border-radius: 12px;
+  padding: 14px 30px;
+  border-radius: 16px;
   cursor: pointer;
   margin-top: 20px;
   width: 100%;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(252, 128, 25, 0.2);
+  max-width: 320px; /* Limit button width on large screens */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(252, 128, 25, 0.25);
+  font-size: 1rem;
 }
 
 .confirm-payment-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(252, 128, 25, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(252, 128, 25, 0.35);
 }
 
-.confirm-payment-btn.verifying {
-  background: #666;
+.confirm-payment-btn:disabled {
+  background: #cbd5e0;
   cursor: not-allowed;
+  box-shadow: none;
   opacity: 0.8;
 }
 
 .upi-qr h4 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  color: #666;
-  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #4a5568;
+  margin-bottom: 12px;
+  font-size: 1rem;
 }
 
 .demo-bypass {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px dashed #ddd;
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 2px dashed #edf2f7;
 }
 
 .demo-bypass p {
-  font-size: 0.8rem;
-  color: #999;
-  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .bypass-btn {
-  background: white;
-  border: 1px solid #ddd;
-  color: #666;
-  padding: 6px 15px;
-  font-size: 0.8rem;
-  border-radius: 20px;
+  background: #f7fafc;
+  border: 1.5px solid #e2e8f0;
+  color: #4a5568;
+  padding: 8px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .bypass-btn:hover {
-  background: #f0f0f0;
-  border-color: #bbb;
+  background: #edf2f7;
+  border-color: #cbd5e0;
+  color: #1a202c;
 }
-
-
